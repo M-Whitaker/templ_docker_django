@@ -35,4 +35,13 @@ log-db:
 	docker-compose logs db
 
 collectstatic:
-	docker exec django /bin/sh -c "python manage.py collectstatic --noinput"  
+	docker exec django /bin/sh -c "python manage.py collectstatic --noinput"
+
+runtests:
+	make build
+	make up
+	docker exec django /bin/sh -c "python manage.py test --keepdb"
+	make stop
+
+test:
+	docker exec django /bin/sh -c "python manage.py test --keepdb"
