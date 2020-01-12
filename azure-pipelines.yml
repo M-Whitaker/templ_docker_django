@@ -17,13 +17,12 @@ steps:
   inputs:
     script: 'make up'
 - script: |
-    pushd '$(projectRoot)'
     docker exec django /bin/sh -c "python manage.py test --testrunner xmlrunner.extra.djangotestrunner.XMLTestRunner --no-input"
   displayName: 'Run tests'
 - task: PublishTestResults@2
   inputs:
     testResultsFiles: "**/TEST-*.xml"
-    testRunTitle: 'Python $(PYTHON_VERSION)'
+    testRunTitle: 'Unit Tests'
   condition: succeededOrFailed()
 - task: CmdLine@2
   inputs:
