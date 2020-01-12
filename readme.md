@@ -28,3 +28,7 @@ To use this project, run this commands:
 13. `make log-db` to log access db container.
 14. `make log-nginx` to log access nginx container.
 15. `make restart` to restart containers.
+
+## Build Status
+
+[![Build Status](https://dev.azure.com/matt43121/templ_docker_django/_apis/build/status/Docker%20Compose?branchName=master)](https://dev.azure.com/matt43121/templ_docker_django/_build/latest?definitionId=3&branchName=master)
