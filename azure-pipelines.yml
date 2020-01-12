@@ -16,9 +16,15 @@ steps:
 - task: CmdLine@2
   inputs:
     script: 'make up'
-- task: CmdLine@2
+- script: |
+    pushd '$(projectRoot)'
+    docker exec django /bin/sh -c "python manage.py test --testrunner xmlrunner.extra.djangotestrunner.XMLTestRunner --no-input"
+  displayName: 'Run tests'
+- task: PublishTestResults@2
   inputs:
-    script: 'make test'
+    testResultsFiles: "**/TEST-*.xml"
+    testRunTitle: 'Python $(PYTHON_VERSION)'
+  condition: succeededOrFailed()
 - task: CmdLine@2
   inputs:
     script: 'make stop'
